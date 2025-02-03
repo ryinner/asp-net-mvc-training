@@ -1,0 +1,63 @@
+﻿@using AspDotNetMVC.Data.Domains
+@model IEnumerable<Company>
+
+@{
+    ViewData["CompanyList"] = "Get companies";
+}
+
+@{
+    bool isAuthencated = User.Identity?.IsAuthenticated ?? false;
+}
+
+<h2>Company list</h2>
+
+@if(isAuthencated)
+{ 
+    <p>
+        @Html.ActionLink("Create new", "Create")
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Information)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Founded)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Industry)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Information)
+                </td>
+                <td>
+                    <img src="/image/@item.Image" width="200" height="200" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Founded)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Industry)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

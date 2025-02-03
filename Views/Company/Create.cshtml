@@ -1,0 +1,52 @@
+﻿@using AspDotNetMVC.Data.Enum
+@model CompanyViewModel
+
+@{
+    ViewData["Create"] = "Create Company";
+}
+
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+    <input id="UserId" name="UserId" type="hidden" asp-for="UserId" />
+    <div class="form-group">
+        <label asp-for="Name">
+            Название
+        </label>
+        <input asp-for="Name" type="text" class="form-control" placeholder="Название компании" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Information">
+            Информация
+        </label>
+        <input asp-for="Information" type="text" class="form-control" placeholder="Информация компании" />
+        <span asp-validation-for="Information" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Founded">
+            Дата основания
+        </label>
+        <input asp-for="Founded" value="2024-01-01" type="date" class="form-control" placeholder="Дата основания" />
+        <span asp-validation-for="Founded" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Image">
+            Логотип
+        </label>
+        <input asp-for="Image" type="file" class="form-control" placeholder="Логотип" />
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Industry">
+            Индустрия
+        </label>
+        <select asp-for="Industry" class="form-control form-control-lg" asp-items="@Html.GetEnumSelectList<Industry>()">
+            <option>--Выбрать--</option>
+        </select>
+        <span asp-validation-for="Industry" class="text-danger"></span>
+    </div>
+    <div class="form-floating mb-4">
+        <button type="submit" class="btn btn-dark float-right mt-3">
+            Создать
+        </button>
+    </div>
+</form>
